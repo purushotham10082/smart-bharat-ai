@@ -493,11 +493,18 @@ Would you like me to draft an application or checklist based on these credential
             
             {isOcrUploading && (
               <div className="flex items-start space-x-3 justify-start">
-                <div className="h-7 w-7 rounded-full bg-purple-600 flex items-center justify-center shrink-0 shadow-sm animate-spin">
-                  <FileImage className="h-4 w-4 text-white" />
+                <div className="h-7 w-7 rounded-full bg-purple-600 flex items-center justify-center shrink-0 shadow-md animate-pulse">
+                  <FileImage className="h-4 w-4 text-white animate-bounce" />
                 </div>
-                <div className="bg-purple-50/50 dark:bg-purple-950/20 border border-purple-500/20 rounded-xl px-4 py-3 text-xs text-purple-600 dark:text-purple-400">
-                  Running Multimodal Gemini OCR on uploaded card...
+                <div className="bg-purple-50/50 dark:bg-purple-950/20 border border-purple-500/30 rounded-xl px-4 py-3 text-xs text-purple-600 dark:text-purple-400 space-y-2 max-w-sm w-full shadow-sm">
+                  <div className="flex items-center justify-between font-bold">
+                    <span>AI Document Scanner (OCR)</span>
+                    <span className="text-[10px] uppercase animate-pulse">Scanning...</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-purple-200 dark:bg-purple-900 rounded-full overflow-hidden relative">
+                    <div className="h-full bg-purple-600 rounded-full animate-pulse" style={{ width: "75%" }}></div>
+                  </div>
+                  <p className="text-[10px] text-purple-500/80">Reading document fields & verifying security signatures...</p>
                 </div>
               </div>
             )}

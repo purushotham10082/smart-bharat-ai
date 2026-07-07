@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "Smart Bharat – AI Powered Civic Companion",
   description: "Your intelligent AI companion for Government Services, Issue Reporting, and Personalized Civic Support in India.",
   keywords: ["Smart Bharat", "Digital India", "AI Grievance Redressal", "Government Schemes", "Passport", "Aadhaar", "India Civic Portals"],
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/emblem.svg",
+    apple: "/emblem.svg",
+  }
 };
 
 export default function RootLayout({

@@ -40,6 +40,7 @@ export default function ReportIssue() {
   const [isLocating, setIsLocating] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [registeredComplaint, setRegisteredComplaint] = useState<any>(null);
   const [error, setError] = useState("");
 
   const handleFetchLocation = () => {
@@ -153,10 +154,8 @@ export default function ReportIssue() {
       list.unshift(newComplaint);
       localStorage.setItem("smart_bharat_complaints", JSON.stringify(list));
 
+      setRegisteredComplaint(newComplaint);
       setSuccess(true);
-      setTimeout(() => {
-        router.push("/complaints");
-      }, 1500);
 
     } catch (err) {
       console.error(err);
@@ -182,6 +181,87 @@ export default function ReportIssue() {
         >
           Return to Administrative Panel
         </button>
+      </div>
+    );
+  }
+
+  if (success && registeredComplaint) {
+    return (
+      <div className="flex-1 w-full max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-8 text-left">
+        <div id="printable-receipt" className="bg-white dark:bg-navy-dark border-2 border-slate-200 dark:border-border rounded-2xl p-8 space-y-6 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1.5 flex">
+            <div className="h-full w-1/3 bg-[#FF9933]"></div>
+            <div className="h-full w-1/3 bg-white"></div>
+            <div className="h-full w-1/3 bg-[#138808]"></div>
+          </div>
+          <div className="flex items-center justify-between border-b border-border pb-4">
+            <div className="flex items-center space-x-3">
+              <img src="/emblem.svg" alt="State Emblem" className="h-12 w-auto object-contain" />
+              <div>
+                <span className="block text-[10px] font-bold text-[#FF9933] uppercase tracking-wider">Government of India</span>
+                <span className="block text-lg font-black text-navy dark:text-white">Smart Bharat AI</span>
+              </div>
+            </div>
+            <div className="text-right text-[10px] text-slate-400 font-mono">
+              <span className="block">Grievance Receipt</span>
+              <span className="block text-xs font-bold text-navy dark:text-white">{registeredComplaint.id}</span>
+            </div>
+          </div>
+          <div className="space-y-4 text-xs text-navy dark:text-slate-200">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Date Filed</span>
+                <span className="font-semibold">{registeredComplaint.date}</span>
+              </div>
+              <div>
+                <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Urgency Level</span>
+                <span className="font-semibold text-red-600 dark:text-red-400">{registeredComplaint.urgency}</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Assigned Department</span>
+                <span className="font-semibold">{registeredComplaint.department}</span>
+              </div>
+              <div>
+                <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Category</span>
+                <span className="font-semibold">{registeredComplaint.category}</span>
+              </div>
+            </div>
+            <div>
+              <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Grievance Title</span>
+              <span className="font-semibold text-sm">{registeredComplaint.title}</span>
+            </div>
+            <div>
+              <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Description Details</span>
+              <p className="p-3 bg-slate-50 dark:bg-navy-light/10 border border-border rounded-lg italic text-slate-500 dark:text-slate-400 leading-normal">
+                "{registeredComplaint.description}"
+              </p>
+            </div>
+            <div>
+              <span className="block text-slate-400 font-bold uppercase text-[9px] tracking-wider">Incident Location</span>
+              <span className="font-semibold">{registeredComplaint.location}</span>
+            </div>
+          </div>
+          <div className="border-t border-border pt-4 text-center text-[10px] text-slate-400">
+            <p>This is a digitally generated acknowledgement receipt by Smart Bharat AI Portal.</p>
+            <p className="mt-1 font-bold text-[#138808]">Satyamev Jayate</p>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <button
+            onClick={() => window.print()}
+            className="flex-1 py-3 px-4 bg-navy text-white text-xs font-bold rounded-xl hover:bg-navy-light flex items-center justify-center space-x-2 shadow-md cursor-pointer"
+          >
+            <span>Print / Save Receipt PDF</span>
+          </button>
+          <button
+            onClick={() => router.push("/complaints")}
+            className="flex-1 py-3 px-4 bg-[#138808] text-white text-xs font-bold rounded-xl hover:bg-green-700 flex items-center justify-center space-x-2 shadow-md cursor-pointer"
+          >
+            <span>Proceed to Complaints Tracker</span>
+          </button>
+        </div>
       </div>
     );
   }
@@ -262,10 +342,11 @@ export default function ReportIssue() {
             
             {/* Title */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label htmlFor="grievance-title" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                 Grievance Title
               </label>
               <input
+                id="grievance-title"
                 type="text"
                 required
                 value={title}
@@ -277,10 +358,11 @@ export default function ReportIssue() {
 
             {/* Description */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label htmlFor="grievance-description" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                 Detailed Description
               </label>
               <textarea
+                id="grievance-description"
                 required
                 rows={4}
                 value={description}
@@ -293,7 +375,7 @@ export default function ReportIssue() {
             {/* Category selection */}
             <div>
               <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                <label htmlFor="grievance-category" className="block text-xs font-bold uppercase tracking-wider text-slate-400">
                   Grievance Category
                 </label>
                 <button
@@ -317,6 +399,7 @@ export default function ReportIssue() {
               </div>
 
               <select
+                id="grievance-category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 className="block w-full px-3 py-2 rounded-lg border border-border bg-slate-50/50 dark:bg-navy-light/10 text-sm text-navy dark:text-white focus:outline-none focus:border-saffron"
@@ -331,11 +414,12 @@ export default function ReportIssue() {
 
             {/* Location GPS */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label htmlFor="grievance-location" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                 GPS Coordinates
               </label>
               <div className="flex space-x-2">
                 <input
+                  id="grievance-location"
                   type="text"
                   required
                   value={gpsLocation}
@@ -367,10 +451,11 @@ export default function ReportIssue() {
                 Upload Proof Image
               </label>
               <div className="flex items-center space-x-4">
-                <label className="px-4 py-3 bg-slate-50 hover:bg-slate-100 dark:bg-navy-light/10 dark:hover:bg-navy-light/35 border-2 border-dashed border-border rounded-xl cursor-pointer flex flex-col items-center justify-center space-y-1 shrink-0 w-28 h-20 transition-all">
+                <label htmlFor="grievance-image" className="px-4 py-3 bg-slate-50 hover:bg-slate-100 dark:bg-navy-light/10 dark:hover:bg-navy-light/35 border-2 border-dashed border-border rounded-xl cursor-pointer flex flex-col items-center justify-center space-y-1 shrink-0 w-28 h-20 transition-all">
                   <Camera className="h-5 w-5 text-slate-400" />
                   <span className="text-[10px] text-slate-400 font-bold">Select File</span>
                   <input
+                    id="grievance-image"
                     type="file"
                     accept="image/*"
                     onChange={handleImageUpload}
