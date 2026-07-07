@@ -1,0 +1,41 @@
+================================================================================
+          MINISTRY OF HOME AFFAIRS - REGISTRAR GENERAL OF INDIA
+                  FORM 1: BIRTH REGISTRATION REPORT
+================================================================================
+
+INSTRUCTIONS:
+- To be filled by parents or the head of the household.
+- Register within 21 days of occurrence to avoid penalty.
+
+--------------------------------------------------------------------------------
+1. CHILD'S INFORMATION:
+   Date of Birth (DD/MM/YYYY): [ _ _ / _ _ / _ _ _ _ ]
+   Sex: [ ] Male   [ ] Female
+   Child's Name (if named): _______________________________________
+
+2. PLACE OF BIRTH:
+   [ ] Hospital / Institution Name: _______________________________
+   [ ] House Address: _____________________________________________
+
+3. PARENT'S INFORMATION:
+   Mother's Name: _________________________________________________
+   Mother's Aadhaar No: [ _ _ _ _  _ _ _ _  _ _ _ _ ]
+   Father's Name: _________________________________________________
+   Father's Aadhaar No: [ _ _ _ _  _ _ _ _  _ _ _ _ ]
+
+4. PERMANENT ADDRESS:
+   House No & Street: _____________________________________________
+   District: _________________________ State: ______________________
+   Pin Code: [ _ _ _ _ _ _ ]
+
+5. STATISTICAL DETAILS:
+   Religion of Family: ____________________________________________
+   Mother's Education Level: _______________________________________
+   Father's Education Level: _______________________________________
+   Mother's Age at Marriage: [ _ _ ] Years
+
+--------------------------------------------------------------------------------
+Date of Filing: ___/___/_____              Signature of Informant: _____________
+--------------------------------------------------------------------------------
+Note: For demonstration purposes. Download official form at serviceonline.gov.in.
+================================================================================

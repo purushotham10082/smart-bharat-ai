@@ -1,0 +1,37 @@
+================================================================================
+                    MINISTRY OF ROAD TRANSPORT & HIGHWAYS
+                     FORM 1A: MEDICAL CERTIFICATE GUIDE
+================================================================================
+
+INSTRUCTIONS:
+- Mandatory for applicants above 40 years of age applying for driving licenses.
+- To be signed and stamped by a Registered Medical Practitioner.
+
+--------------------------------------------------------------------------------
+1. APPLICANT DETAILS:
+   Name of Applicant: _____________________________________________
+   Identification Mark: ___________________________________________
+   Age / DOB: _____________________________________________________
+
+2. MEDICAL CERTIFICATION:
+   (To be filled by Registered Medical Practitioner)
+
+   a. Is the applicant's vision normal?                [ ] Yes  [ ] No
+   b. Does the applicant suffer from color blindness?   [ ] Yes  [ ] No
+   c. Is the applicant's hearing satisfactory?          [ ] Yes  [ ] No
+   d. Does the applicant show signs of epilepsy?        [ ] Yes  [ ] No
+   e. Are there signs of muscle incoordination?          [ ] Yes  [ ] No
+
+3. MEDICAL DECLARATION:
+   I hereby certify that I have personally examined the applicant and that they
+   are [ ] FIT / [ ] UNFIT to hold a professional driving license.
+
+   Doctor's Name: __________________________________________________
+   Registration Number: ____________________________________________
+   Seal / Stamp:                               Signature: __________
+
+--------------------------------------------------------------------------------
+Date: ___/___/_____
+--------------------------------------------------------------------------------
+Note: This is a demo Form 1A structure. Download official PDF on parivahan.gov.in.
+================================================================================
