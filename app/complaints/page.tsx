@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/auth-context";
 import { useLanguage } from "@/context/lang-context";
 import { 
   ClipboardList, 
@@ -80,6 +82,8 @@ const SEEDED_COMPLAINTS: Complaint[] = [
 
 export default function Complaints() {
   const { t } = useLanguage();
+  const { user, loading } = useAuth();
+  const router = useRouter();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -122,6 +126,34 @@ export default function Complaints() {
     if (status === "In Progress") return "bg-blue-100 text-blue-700 border-blue-200";
     return "bg-yellow-100 text-yellow-700 border-yellow-200";
   };
+
+  if (loading) {
+    return (
+      <div className="flex-1 flex items-center justify-center p-8 text-navy dark:text-white font-bold animate-pulse">
+        Checking authentication status...
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex-1 w-full max-w-xl mx-auto py-16 px-4 text-center space-y-6">
+        <div className="p-6 bg-slate-50 dark:bg-navy-light/10 border border-border rounded-2xl shadow-md text-navy dark:text-slate-300">
+          <AlertCircle className="mx-auto h-12 w-12 mb-3 text-saffron" />
+          <h2 className="text-lg font-bold">Sign In Required</h2>
+          <p className="text-sm mt-1 leading-normal text-slate-500">
+            Please sign in to your Smart Bharat account to view, track, or manage your registered civic complaints.
+          </p>
+        </div>
+        <button
+          onClick={() => router.push("/login")}
+          className="px-5 py-2.5 bg-navy text-white text-xs font-bold rounded-lg hover:bg-navy-light cursor-pointer"
+        >
+          Sign In Now
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-8 text-left">
